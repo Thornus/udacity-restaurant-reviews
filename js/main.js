@@ -147,6 +147,7 @@ createRestaurantHTML = (restaurant) => {
   image.src = `${imgUrlArray[1]}`;
   image.srcset = `${imgUrlArray[0]} 620w, ${imgUrlArray[1]} 800w, ${imgUrlArray[2]} 1440w`;
   image.alt = `${restaurant.cuisine_type} restaurant ${restaurant.name}`;
+  image.setAttribute('tabindex', '0');
   li.append(image);
 
   const name = document.createElement('h1');

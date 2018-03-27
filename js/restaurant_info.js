@@ -63,6 +63,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.src = `${imgUrlArray[1]}`;
   image.srcset = `${imgUrlArray[0]} 620w, ${imgUrlArray[1]} 800w, ${imgUrlArray[2]} 1440w`;
   image.alt = `${restaurant.cuisine_type} restaurant ${restaurant.name}`;
+  image.setAttribute('tabindex', '0');
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -85,10 +86,12 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 
     const day = document.createElement('td');
     day.innerHTML = key;
+    day.setAttribute('tabindex', '0');
     row.appendChild(day);
 
     const time = document.createElement('td');
     time.innerHTML = operatingHours[key];
+    time.setAttribute('tabindex', '0');
     row.appendChild(time);
 
     hours.appendChild(row);
