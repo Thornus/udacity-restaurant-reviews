@@ -166,7 +166,7 @@ createRestaurantHTML = (restaurant) => {
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
 
-  return li
+  return li;
 }
 
 /**
@@ -188,10 +188,13 @@ registerServiceWorker = () => {
     navigator.serviceWorker.register('sw.js').then(function(registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      console.log(registration);
     }, function(err) {
-      // registration failed :(
+      // registration failed
       console.log('ServiceWorker registration failed: ', err);
     });
   }
+}
+
+skipSection = () => {
+  document.getElementById('skip-to').focus();
 }

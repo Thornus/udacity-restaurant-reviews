@@ -56,8 +56,13 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.className = 'restaurant-img';
+  const imgUrlArray = [DBHelper.imageUrlForRestaurant(restaurant, 'small'),
+                       DBHelper.imageUrlForRestaurant(restaurant, 'medium'),
+                       DBHelper.imageUrlForRestaurant(restaurant, 'large')];
+  image.src = `${imgUrlArray[1]}`;
+  image.srcset = `${imgUrlArray[0]} 620w, ${imgUrlArray[1]} 800w, ${imgUrlArray[2]} 1440w`;
+  image.alt = `${restaurant.cuisine_type} restaurant ${restaurant.name}`;
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -171,4 +176,8 @@ getParameterByName = (name, url) => {
   if (!results[2])
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+skipSection = () => {
+  document.getElementById('restaurant-container').focus();
 }
