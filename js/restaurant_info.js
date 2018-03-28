@@ -1,6 +1,9 @@
 let restaurant;
 var map;
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  registerServiceWorker();
+});
 /**
  * Initialize Google map, called from HTML.
  */
@@ -103,7 +106,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
+  const title = document.createElement('h3');
   title.innerHTML = 'Reviews';
   title.setAttribute('role', 'header');
   title.setAttribute('tabindex', '0');
@@ -131,7 +134,7 @@ createReviewHTML = (review) => {
   reviewHeader.className = 'review-header';
   li.appendChild(reviewHeader);
 
-  const name = document.createElement('h3');
+  const name = document.createElement('h4');
   name.innerHTML = review.name;
   name.className = 'review-author';
   name.setAttribute('role', 'header');
@@ -169,6 +172,7 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
+  li.setAttribute('aria-current', restaurant.name)
   breadcrumb.appendChild(li);
 }
 
@@ -188,6 +192,14 @@ getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-skipSection = () => {
-  document.getElementById('restaurant-container').focus();
+registerServiceWorker = () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }
 }

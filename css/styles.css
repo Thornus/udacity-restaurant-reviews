@@ -61,10 +61,6 @@ nav {
 }
 nav h1 {
   margin: auto;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
 	width: 100%;
 }
 nav h1 a {
@@ -80,6 +76,7 @@ nav h1 a {
     background-color: #eee;
     font-size: 1em;
     margin: 0;
+		text-align: left;
 }
 
 /* Display list items side by side */
@@ -166,10 +163,9 @@ nav h1 a {
   display: block;
   margin: 0;
   max-width: 100%;
-  min-height: 248px;
   min-width: 100%;
 }
-#restaurants-list li h1 {
+#restaurants-list li h2 {
   color: #f18200;
   font-family: "Roboto", Arial, sans-serif;
   font-size: 1.5em;
@@ -260,7 +256,7 @@ nav h1 a {
   border-top: 1px solid #fff;
   width: 50%;
 }
-#reviews-container h2 {
+#reviews-container h3 {
   color: #f58500;
   font-size: 2em;
   font-weight: 300;

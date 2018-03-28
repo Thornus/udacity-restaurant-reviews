@@ -150,7 +150,7 @@ createRestaurantHTML = (restaurant) => {
   image.setAttribute('tabindex', '0');
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   name.setAttribute('role', 'header');
   name.setAttribute('tabindex', '0');
@@ -169,6 +169,7 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute('role', 'button');
   li.append(more)
 
   return li;
@@ -198,8 +199,4 @@ registerServiceWorker = () => {
       console.log('ServiceWorker registration failed: ', err);
     });
   }
-}
-
-skipSection = () => {
-  document.getElementById('skip-to').focus();
 }

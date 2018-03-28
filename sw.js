@@ -1,13 +1,34 @@
 importScripts('js/serviceworker-cache-polyfill.js'); // polyfill needed for service worker to work on all browsers
 
-var CACHE_NAME = 'restaurant-reviews-cache-v1';
-var urlsToCache = [
+const CACHE_NAME = 'restaurant-reviews-cache-v1';
+let filesToCache = [
 	'/',
+	'/index.html',
+	'/restaurant.html',
 	'/css/styles.css',
 	'/js/main.js',
 	'/js/restaurant_info.js',
-	'/js/dbhelper.js'
+	'/js/dbhelper.js',
+	'/js/picturefill.min.js',
+	'/js/serviceworker-cache-polyfill.js'
+	'/data/restaurants.json',
 ];
+let imagesToCache = generateImagesArray();
+const urlsToCache = filesToCache.concat(imagesToCache);
+
+function generateImagesArray() {
+	const imgPath = '/img/';
+	const imgSuffixes = ['small', 'medium', 'large'];
+	const arr = [];
+
+	for (var i = 1; i < 11; i++) {
+		for (var j = 0; j < 3; j++) {
+			arr.push(`${imgPath}${i}-${imgSuffixes[j]}.jpg`);
+		}
+	}
+
+	return arr;
+}
 
 // INSTALL EVENT
 self.addEventListener('install', function (event) {
@@ -26,7 +47,7 @@ self.addEventListener('activate', function (event) {
 		.then(cacheNames =>
 			Promise.all(
 				cacheNames
-					.filter(cacheName => cacheName === CACHE_NAME)
+					.filter(cacheName => cacheName !== CACHE_NAME)
 					.map(cleanCache)
 			)
 		));
