@@ -10,8 +10,8 @@ let filesToCache = [
 	'/js/restaurant_info.js',
 	'/js/dbhelper.js',
 	'/js/picturefill.min.js',
-	'/js/serviceworker-cache-polyfill.js'
-	'/data/restaurants.json',
+	'/js/serviceworker-cache-polyfill.js',
+	'/data/restaurants.json'
 ];
 let imagesToCache = generateImagesArray();
 const urlsToCache = filesToCache.concat(imagesToCache);
